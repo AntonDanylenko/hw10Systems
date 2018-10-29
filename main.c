@@ -5,24 +5,24 @@
 #include <errno.h>
 #include <string.h>
 
-ssize_t getRandom(){
+unsigned int getRandom(){
   int fd = open("/dev/random", O_RDONLY);
-  ssize_t answer;
+  unsigned int answer;
   read(fd, &answer, sizeof(ssize_t));
   if (errno) {
     printf("errno %d: %s\n", errno, strerror(errno));
   }
   close(fd);
-  printf("answer: %lu\n", answer);
+  printf("answer: %x\n", answer);
   return answer;
 }
 
 int main(){
   printf("Generating random numbers:\n");
-  ssize_t randsInitial[10];
+  unsigned int randsInitial[10];
   for (int x=0; x<10; x++){
     randsInitial[x] = getRandom();
-    printf("  random %d: %lu\n", x, randsInitial[x]);
+    printf("  random %d: %x\n", x, randsInitial[x]);
   }
 
   /*printf("write wassup\n");
