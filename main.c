@@ -8,7 +8,7 @@
 unsigned int getRandom(){
   int fd = open("/dev/random", O_RDONLY);
   unsigned int answer;
-  read(fd, &answer, sizeof(ssize_t));
+  read(fd, &answer, sizeof(unsigned int));
   if (errno) {
     printf("errno %d: %s\n", errno, strerror(errno));
   }
