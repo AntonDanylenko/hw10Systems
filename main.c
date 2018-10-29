@@ -13,7 +13,7 @@ unsigned int getRandom(){
     printf("errno %d: %s\n", errno, strerror(errno));
   }
   close(fd);
-  printf("answer: %x\n", answer);
+  printf("answer: %d\n", answer);
   return answer;
 }
 
@@ -22,7 +22,7 @@ int main(){
   unsigned int randsInitial[10];
   for (int x=0; x<10; x++){
     randsInitial[x] = getRandom();
-    printf("  random %d: %x\n", x, randsInitial[x]);
+    printf("  random %d: %d\n", x, randsInitial[x]);
   }
 
   /*printf("write wassup\n");
