@@ -25,14 +25,22 @@ int main(){
     printf("  random %d: %d\n", x, randsInitial[x]);
   }
 
-  printf("Writing numbers to file...");
-  int fd = open("temp.txt", O_RDWR);
-  write(fd, randsInitial, sizeof(randsInitial));
+  printf("Writing numbers to file...\n\n");
+  int fd0 = open("temp.txt", O_RDWR | O_CREAT, 0666);
+  write(fd0, randsInitial, sizeof(randsInitial));
+  if (errno) {
+    printf("errno %d: %s\n", errno, strerror(errno));
+  }
+  close(fd0);
 
-  printf("Reading numbers from file...");
+  printf("Reading numbers from file...\n\n");
+  int fd1 = open("temp.txt", O_RDONLY);
   int randsFinal[10];
-  read(fd, randsFinal, sizeof(randsFinal));
-  close(fd);
+  read(fd1, randsFinal, sizeof(randsFinal));
+  if (errno) {
+    printf("errno %d: %s\n", errno, strerror(errno));
+  }
+  close(fd1);
 
   printf("Verification that written values were the same:\n");
   for (int x=0; x<10; x++){
