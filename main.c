@@ -33,8 +33,8 @@ int main(){
   int randsFinal[10];
   read(fd, randsFinal, sizeof(randsFinal));
   close(fd);
-  
-  printf("Verification that written values were the same:\n")
+
+  printf("Verification that written values were the same:\n");
   for (int x=0; x<10; x++){
     printf("  random %d: %d\n", x, randsFinal[x]);
   }
