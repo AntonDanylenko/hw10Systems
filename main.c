@@ -5,10 +5,10 @@
 #include <errno.h>
 #include <string.h>
 
-unsigned int getRandom(){
+int getRandom(){
   int fd = open("/dev/random", O_RDONLY);
-  unsigned int answer;
-  read(fd, &answer, sizeof(unsigned int));
+  int answer;
+  read(fd, &answer, sizeof(int));
   if (errno) {
     printf("errno %d: %s\n", errno, strerror(errno));
   }
@@ -19,7 +19,7 @@ unsigned int getRandom(){
 
 int main(){
   printf("Generating random numbers:\n");
-  unsigned int randsInitial[10];
+  int randsInitial[10];
   for (int x=0; x<10; x++){
     randsInitial[x] = getRandom();
     printf("  random %d: %d\n", x, randsInitial[x]);
